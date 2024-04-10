@@ -605,7 +605,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     "virtual_disks": self.extract_virtual_disks,
                 }
             )
-
         if self.interfaces:
             extractors.update(
                 {
@@ -1498,6 +1497,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.refresh_manufacturers_lookup,
             self.refresh_clusters_lookup,
         ]
+        if self.virtual_disks:
+            lookups.append(self.refresh_virtual_disks)
+
         if self.virtual_disks:
             lookups.append(self.refresh_virtual_disks)
 
