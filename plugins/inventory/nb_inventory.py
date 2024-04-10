@@ -857,6 +857,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         # If tag_zero fails definition (no tags), return the empty array.
         except Exception:
             return host["tags"]
+
     def extract_virtual_disks(self, host):
         try:
             virtual_disks_lookup = self.vm_virtual_disks_lookup
@@ -1326,6 +1327,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 self.vm_services_lookup[service["virtual_machine"]["id"]][
                     service_id
                 ] = service
+
     def refresh_virtual_disks(self):
         url_vm_virtual_disks = (
             self.api_endpoint + "/api/virtualization/virtual-disks/?limit=0"
@@ -1498,7 +1500,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         ]
         if self.virtual_disks:
             lookups.append(self.refresh_virtual_disks)
-            
+
         if self.interfaces:
             lookups.append(self.refresh_interfaces)
 
